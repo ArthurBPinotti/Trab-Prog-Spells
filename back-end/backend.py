@@ -9,10 +9,10 @@ def padrao():
 
 @app.route("/listar_spells")
 def listar_spells():
-    spells = db.session.query(Spell).add()
+    spells = db.session.query(Spell).all()
     retorno = []
     for s in spells:
-        retorno.append(s.json)
+        retorno.append(s.json())
     return jsonify(retorno)
 
 

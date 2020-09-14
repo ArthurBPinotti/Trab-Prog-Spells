@@ -9,6 +9,6 @@ app = Flask(__name__)
 caminho = os.path.dirname(os.path.abspath(__file__))
 arquivobd = os.path.join(caminho, "spells.db")
 # sqlalchemy
-app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite: // /"+arquivobd
-app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False  # remover warnings
+app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///"+arquivobd
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False  # remover warnings
 db = SQLAlchemy(app)
