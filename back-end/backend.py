@@ -13,7 +13,9 @@ def listar_spells():
     retorno = []
     for s in spells:
         retorno.append(s.json())
-    return jsonify(retorno)
+    resposta = jsonify(retorno)
+    resposta.headers.add("Access-Control-Allow-Origin", "*")
+    return resposta
 
 
 @app.route("/incluir_spell", methods=["post"])
