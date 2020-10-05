@@ -49,4 +49,63 @@ $(document).ready(function () {
         $("#conteudoInicial").removeClass("invisible");
 
     })
+    $("#btn_add_spell").click(function () {
+        //obter dados do formulário
+        name = $("#name_spell").val();
+        level = $("#level").val();
+        school = $("#school").val();
+        castTime = $("#castTime").val();
+        range = $("#range").val();
+        components = $("#components").val();
+        duration = $("#duration").val();
+        concentration = $("#concentration").val();
+        classe = $("#class_spell").val();
+        desc = $("#desc").val();
+        //dados pra envio(json)
+        dados = JSON.stringify({
+            name: name,
+            level: level,
+            school: school,
+            castTime: castTime,
+            range: range,
+            components: components,
+            duration: duration,
+            concentration: concentration,
+            classe: classe,
+            desc: desc
+        });
+        // enviar ao back-end
+        $.ajax({
+            url: 'http://localhost:5000/adicionar_spell',
+            type: 'POST',
+            contentType: 'application/json',
+            dataType: 'json',
+            data: dados,
+            success: adicoinarSpell,
+            erro: erroAdicionarSpell
+        });
+        function adicoinarSpell(resposta) {
+            //msg de sucesso
+            if (resposta.resultado == "ok") {
+                alert("Spell Adicionado Com Sucesso")
+                //limpar campos form
+                $("#name_spell").val("");
+                $("#level").val("");
+                $("#school").val("");
+                $("#castTime").val("");
+                $("#range").val();
+                $("#components").val("");
+                $("#duration").val("");
+                $("#concentration").val("");
+                $("#class_spell").val("");
+                $("#desc").val("");
+            } else {
+                alert("erro na comunicação")
+            }
+
+        }
+        function erroAdicionarSpell(resposta) {
+            alert("Houve um erro na chamada ao back-end")
+        }
+    });
 });

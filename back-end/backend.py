@@ -18,12 +18,16 @@ def listar_spells():
     return resposta
 
 
-@app.route("/incluir_spell", methods=["post"])
-def incluir_spell():
-    dados = resquest.get_json()
+@app.route("/adicionar_spell", methods=["POST"])
+def adicionar_spell():
+    dados = request.get_json()
+    if dados["concentration"] == "1":
+        dados["concentration"] = True
+    else:
+        dados["concentration"] = False
     novo_spell = Spell(**dados)
     db.session.add(novo_spell)
-    db.session.commint()
+    db.session.commit()
     return{"resultado": "ok"}
 
 

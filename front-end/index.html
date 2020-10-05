@@ -31,7 +31,7 @@
           <a class="nav-link" href="#" id="link_listar_spells">Ver Todos</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Novo Spell</a>
+          <a class="nav-link" href="#" data-toggle="modal" data-target="#exampleModal">Novo Spell</a>
         </li>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
@@ -64,7 +64,7 @@
       <thead class="thead-dark">
         <tr>
           <th scope="col">Nome</th>
-          <th scope="col">Nivel</th>
+          <th scope="col">Nível</th>
           <th scope="col">Escola</th>
           <th scope="col">Tempo de Conjuração</th>
           <th scope="col">Alcance</th>
@@ -85,6 +85,77 @@
         -->
       </tbody>
     </table>
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+      aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Novo Spell</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="form-group">
+                <label for="recipient-name" class="col-form-label">Nome:</label>
+                <input type="text" class="form-control" id="name_spell">
+              </div>
+              <div class="form-group">
+                <label for="message-text" class="col-form-label">Nível:</label>
+                <input type="number" class="form-control" id="level" min="0" max="9">
+
+              </div>
+              <div class="form-group">
+                <label for="message-text" class="col-form-label">Escola:</label>
+                <input type="text" class="form-control" id="school">
+              </div>
+              <div class="form-group">
+                <label style="display: block" for="message-text" class="col-form-label">Tempo de Conjuração:</label>
+                <input type="radio" id="castTime" name="castTime" value="1 ação">
+                <label for="male">1 Ação</label><br>
+                <input type="radio" id="castTime" name="castTime" value="1 ação bonus">
+                <label for="female">1 Ação Bonus</label><br>
+                <input type="radio" id="castTime" name="castTime" value="1 reação">
+                <label for="other">1 Reação</label>
+              </div>
+              <div class="form-group">
+                <label for="message-text" class="col-form-label">Alcance:</label>
+                <input type="text" class="form-control" id="range">
+              </div>
+              <div class="form-group">
+                <label for="message-text" class="col-form-label">Componentes:</label>
+                <input type="text" class="form-control" id="components">
+              </div>
+              <div class="form-group">
+                <label for="message-text" class="col-form-label">Duração:</label>
+                <input type="text" class="form-control" id="duration">
+              </div>
+              <div class="form-group">
+                <label style="display: block" for="message-text" class="col-form-label">Concentração:</label>
+                <input type="radio" id="concentration" name="concentration" value="1">
+                <label for="female">Sim</label><br>
+                <input type="radio" id="concentration" name="concentration" value="0">
+                <label for="other">Não</label>
+              </div>
+              <div class="form-group">
+                <label for="message-text" class="col-form-label">Classe:</label>
+                <input type="text" class="form-control" id="class_spell">
+              </div>
+              <div class="form-group">
+                <label for="message-text" class="col-form-label">Descrição</label>
+                <input type="text" class="form-control" id="desc">
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+            <button type="button" class="btn btn-primary" id="btn_add_spell">Adicionar</button>
+          </div>
+        </div>
+      </div>
+    </div>
 
   </div>
 
