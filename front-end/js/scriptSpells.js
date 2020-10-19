@@ -27,6 +27,10 @@ $(document).ready(function () {
                     "<td>" + spells[i].duration + "</td>" +
                     "<td>" + spells[i].concentration + "</td>" +
                     "<td>" + spells[i].classe + "</td>" +
+                    "<td><a href=# id='link_excluir_spell'" + spells[i].id + "'" +
+                    "class='excluir_spell'><img src='images/excluir.png' height='50px' " +
+                    "alt='Excluir Spell' title='Excluir Spell'></a>" +
+                    '</td>' +
                     "</tr >"
                 // adicionar a linha da tabela em um acumulador
                 linhas = linhas + lin;
@@ -106,6 +110,39 @@ $(document).ready(function () {
         }
         function erroAdicionarSpell(resposta) {
             alert("Houve um erro na chamada ao back-end")
+        }
+    });
+
+    // código para os ícones de excluir spells (classe css)
+    $(document).on("click", ".excluir_spell", function () {
+        // obter o ID do ícone que foi clicado
+        var componente_clicado = $(this).attr('id');
+        // no id do ícone, obter o ID do spell
+        var nome_icone = "excluir_";
+        var id_spell = componente_clicado.substring(nome_icone.length);
+        // solicitar a exclusão do spell
+        $.ajax({
+            url: 'http://localhost:5000/excluir_spell/' + id_spell,
+            type: 'DELETE', // método da requisição
+            dataType: 'json', // os dados são recebidos no formato json
+            success: spellExcluido, // chama a função listar para processar o resultado
+            error: erroAoExcluir
+        });
+        function spellExcluido(retorno) {
+            if (retorno.resultado == "ok") { // a operação deu certo?
+                // remover da tela a linha cujo spell foi excluído
+                $("#linha_" + id_spell).fadeOut(1000, function () {
+                    // informar resultado de sucesso
+                    alert("Spell removido com sucesso!");
+                });
+            } else {
+                // informar mensagem de erro
+                alert(retorno.resultado + ":" + retorno.detalhes);
+            }
+        }
+        function erroAoExcluir(retorno) {
+            // informar mensagem de erro
+            alert("erro ao excluir dados, verifique o backend: ");
         }
     });
 });
