@@ -33,15 +33,15 @@ def adicionar_spell():
 
 @app.route("/excluir_spell/<int:spell_id>", methods=['DELETE'])
 def excluir_spell(spell_id):
-    print("alooo")
+
     resposta = jsonify({"resultado": "ok", "detalhes": "ok"})
     try:
         Spell.query.filter(Spell.id == spell_id).delete()
         db.session.commit()
     except Exception as e:
         resposta = jsonify({"resultado": "erro", "detalhes": str(e)})
-        
-    resposta.headers.add("Access-Control-Allow-Origin","*")
+
+    resposta.headers.add("Access-Control-Allow-Origin", "*")
     return resposta
 
 
