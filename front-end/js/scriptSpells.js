@@ -17,7 +17,7 @@ $(document).ready(function () {
             for (var i in spells) {
 
                 // montar uma linha da tabela de plantas
-                lin = "<tr>" +
+                lin = "<tr id ='linha_" +spells[i].id +"'>" +
                     "<td>" + spells[i].name + "</td >" +
                     "<td>" + spells[i].level + "</td>" +
                     "<td>" + spells[i].school + "</td>" +
@@ -27,7 +27,8 @@ $(document).ready(function () {
                     "<td>" + spells[i].duration + "</td>" +
                     "<td>" + spells[i].concentration + "</td>" +
                     "<td>" + spells[i].classe + "</td>" +
-                    "<td><a href=# id='link_excluir_spell'" + spells[i].id + "'" +
+                    "<td><a href=# id='link_excluir_spell" + spells[i].id + "'" 
+                    +"onClick='excluir_spell("+ spells[i].id + ")'"+
                     "class='excluir_spell'><img src='images/excluir.png' height='50px' " +
                     "alt='Excluir Spell' title='Excluir Spell'></a>" +
                     '</td>' +
@@ -113,22 +114,22 @@ $(document).ready(function () {
         }
     });
 
-    // código para os ícones de excluir spells (classe css)
-    $(document).on("click", ".excluir_spell", function () {
-        // obter o ID do ícone que foi clicado
-        var componente_clicado = $(this).attr('id');
-        // no id do ícone, obter o ID do spell
-        var nome_icone = "excluir_";
-        var id_spell = componente_clicado.substring(nome_icone.length);
-        // solicitar a exclusão do spell
-        $.ajax({
-            url: 'http://localhost:5000/excluir_spell/' + id_spell,
-            type: 'DELETE', // método da requisição
-            dataType: 'json', // os dados são recebidos no formato json
-            success: spellExcluido, // chama a função listar para processar o resultado
-            error: erroAoExcluir
-        });
-        function spellExcluido(retorno) {
+   
+});
+
+
+ // código para os ícones de excluir spells (classe css)
+ function excluir_spell(id_spell) {
+
+    console.log(id_spell);
+    // solicitar a exclusão do spell
+    $.ajax({
+        url: 'http://localhost:5000/excluir_spell/' + id_spell,
+        type: 'DELETE', // método da requisição
+        dataType: 'json', // os dados são recebidos no formato json
+        data: JSON.stringify({ id_spell: id_spell}),
+        success: function(retorno){
+            
             if (retorno.resultado == "ok") { // a operação deu certo?
                 // remover da tela a linha cujo spell foi excluído
                 $("#linha_" + id_spell).fadeOut(1000, function () {
@@ -139,10 +140,13 @@ $(document).ready(function () {
                 // informar mensagem de erro
                 alert(retorno.resultado + ":" + retorno.detalhes);
             }
-        }
-        function erroAoExcluir(retorno) {
-            // informar mensagem de erro
-            alert("erro ao excluir dados, verifique o backend: ");
-        }
+        }, // chama a função listar para processar o resultado
+        error: erroAoExcluir
     });
-});
+
+
+    function erroAoExcluir(retorno) {
+        // informar mensagem de erro
+        alert("erro ao excluir dados, verifique o backend: ");
+    }
+};
