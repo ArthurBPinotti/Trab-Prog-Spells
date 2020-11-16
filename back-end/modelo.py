@@ -54,7 +54,7 @@ class Spell(db.Model):
             "classe": self.classe,
             "desc": self.desc,
             "school_id": self.school_id,
-            "school_info": self.school.json(),
+            "school_info": self.school_info.json(),
             "classe_id": self.classe_id,
             "classe_info": self.classe_info.json()
         }
