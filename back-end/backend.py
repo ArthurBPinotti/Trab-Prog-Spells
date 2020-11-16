@@ -1,5 +1,7 @@
 from config import *
 from modelo import Spell
+from modelo import School
+from modelo import Classe
 
 
 @app.route("/")
@@ -41,6 +43,28 @@ def excluir_spell(spell_id):
     except Exception as e:
         resposta = jsonify({"resultado": "erro", "detalhes": str(e)})
 
+    resposta.headers.add("Access-Control-Allow-Origin", "*")
+    return resposta
+
+
+@app.route("/listar_schools")
+def listar_schools():
+    schools = db.session.query(School).all()
+    retorno = []
+    for s in schools:
+        retorno.append(s.json())
+    resposta = jsonify(retorno)
+    resposta.headers.add("Access-Control-Allow-Origin", "*")
+    return resposta
+
+
+@app.route("/listar_classes")
+def listar_classes():
+    classes = db.session.query(Classe).all()
+    retorno = []
+    for c in classes:
+        retorno.append(c.json())
+    resposta = jsonify(retorno)
     resposta.headers.add("Access-Control-Allow-Origin", "*")
     return resposta
 
