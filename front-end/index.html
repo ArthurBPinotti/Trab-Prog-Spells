@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
     integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous" />
 
-  <title>Repositório de Spells</title>
+  <title>Inicio|Repositório de Spells</title>
 </head>
 
 <body>
@@ -25,33 +25,18 @@
       <ul class="navbar-nav mr-auto">
         <span class="navbar-text">Controle de Spells</span>
         <li class="nav-item active">
-          <a class="nav-link" href="#" id="link_inicio">Início <span class="sr-only">(current)</span></a>
+          <a class="nav-link" href="index.html" id="link_listar_spells">Início</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#" id="link_listar_spells">Ver Todos</a>
+        <li class="nav-item active">
+          <a class="nav-link" href="escolas.html" id="link_listar_escolas">Escolas</a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link" href="source.html" id="link_listar_sources">Livros Fonte</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#" data-toggle="modal" data-target="#exampleModal">Novo Spell</a>
         </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-            aria-haspopup="true" aria-expanded="false">
-            Dropdown
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Another action</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Something else here</a>
-          </div>
-        </li>
       </ul>
-      <form class="form-inline my-2 my-lg-0">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" />
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
-          Search
-        </button>
-      </form>
     </div>
   </nav>
 
@@ -60,7 +45,7 @@
     <div id="conteudoInicial" class="invisible">
       Bem Vindo ao Repositório de Spells
     </div>
-    <table id="tabelaSpells" class="table table-striped table-bordered invisible">
+    <table id="tabelaSpells" class="table table-striped table-bordered">
       <thead class="thead-dark">
         <tr>
           <th scope="col">Nome</th>
@@ -72,6 +57,7 @@
           <th scope="col">Duração</th>
           <th scope="col">Concentração</th>
           <th scope="col">Classe</th>
+          <th scope="col">Fonte</th>
           <th scope="col">Operações</th>
         </tr>
       </thead>
